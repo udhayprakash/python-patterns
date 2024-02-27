@@ -41,8 +41,7 @@ class Ui(object):
         print('')
 
     def get_product_information(self, product):
-        product_info = self.business_logic.product_information(product)
-        if product_info:
+        if product_info := self.business_logic.product_information(product):
             print('PRODUCT INFORMATION:')
             print('Name: {0}, Price: {1:.2f}, Quantity: {2:}'.format(
                 product.title(), product_info.get('price', 0),

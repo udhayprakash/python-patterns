@@ -52,8 +52,7 @@ class Request(object):
 
     def __init__(self, request):
         self.type = None
-        request = request.lower()
-        if request == self.mobile_type:
+        if (request := request.lower()) == self.mobile_type:
             self.type = self.mobile_type
         elif request == self.tablet_type:
             self.type = self.tablet_type

@@ -149,8 +149,7 @@ class CompositeDict(SpecialDict):
         'child' with key 'key' """
 
         # First get the child's dictionary
-        childDict = self.getInfoDict(child)
-        if childDict:
+        if childDict := self.getInfoDict(child):
             return childDict.get(key, None)
 
     def setProperty(self, child, key, value):
@@ -158,8 +157,7 @@ class CompositeDict(SpecialDict):
         the child 'child' to 'value' """
 
         # First get the child's dictionary
-        childDict = self.getInfoDict(child)
-        if childDict:
+        if childDict := self.getInfoDict(child):
             childDict[key] = value
 
     def getChildren(self):
@@ -212,8 +210,7 @@ class CompositeDict(SpecialDict):
     def getPropertyDict(self):
         """ Return the property dictionary """
 
-        d = self.getChild('__properties')
-        if d:
+        if d := self.getChild('__properties'):
             return d.getDict()
         else:
             return {}
@@ -273,8 +270,7 @@ class CompositeDict(SpecialDict):
         if type(name) != str:
             raise ValueError('Argument should be a string!')
 
-        child = self.getChild(name)
-        if child:
+        if child := self.getChild(name):
             # print('Child %s present!' % name)
             # Replace it if force==True
             if force:
@@ -299,10 +295,8 @@ class CompositeDict(SpecialDict):
         """ Add the child object 'child'. If it is already present,
         it is overwritten by default """
 
-        currChild = self.getChild(child.getName())
-        if currChild:
-            index = self.getIndex(currChild)
-            if index != -1:
+        if currChild := self.getChild(child.getName()):
+            if (index := self.getIndex(currChild)) != -1:
                 self._children[index] = child
                 child.setParent(self)
                 # Unset the existing child's parent

@@ -85,8 +85,7 @@ class TestManager:
         self._tc = None
 
     def prepareReporting(self):
-        rvalue = self._db.insert()
-        if rvalue == -1:
+        if (rvalue := self._db.insert()) == -1:
             self._tc.setProblem(1)
             self._reporter.prepare()
 

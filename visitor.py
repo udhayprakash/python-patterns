@@ -23,8 +23,7 @@ class Visitor(object):
         meth = None
         for cls in node.__class__.__mro__:
             meth_name = 'visit_' + cls.__name__
-            meth = getattr(self, meth_name, None)
-            if meth:
+            if meth := getattr(self, meth_name, None):
                 break
 
         if not meth:
