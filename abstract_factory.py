@@ -4,8 +4,7 @@
 # http://ginstrom.com/scribbles/2007/10/08/design-patterns-python-style/
 
 """Implementation of the abstract factory pattern"""
-
-import random
+import secrets
 
 
 class PetShop:
@@ -69,7 +68,7 @@ class CatFactory:
 # Create the proper family
 def get_factory():
     """Let's be dynamic!"""
-    return random.choice([DogFactory, CatFactory])()
+    return secrets.SystemRandom().choice([DogFactory, CatFactory])()
 
 
 # Show pets with various factories
